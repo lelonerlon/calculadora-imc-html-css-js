@@ -3,38 +3,36 @@ function mostra(frase) {
 	document.write(frase);
 }
 
-var nome = document.querySelector("nome");
-var peso = document.querySelector("peso");
-var altura = document.querySelector("altura");
-var imc = peso / (altura * altura);
+function imc() {
+
+	const nome = document.getElementById("nome").value;
+	const peso = document.getElementById("peso").value;
+	const altura = document.getElementById("altura").value;
+	const resultado = document.getElementById("resultado");
+	
+	let grauDoPeso = "";
 
 
-if (imc < 18.5) {
-	mostra(nome + ", O seu IMC é" + imc + ". E você está abaixo do Peso Ideal.")
-	break;
+	var imc = Math.round(peso / (altura * altura));
+
+		if (imc < 18.5) {
+			grauDoPeso = ". Você está abaixo do Peso Ideal.";
+		}if (imc >= 18.5 && imc <= 24.99) {
+			grauDoPeso = ". Você está no Peso Ideal.";
+		}if (imc >= 25 && imc <= 29.9) {
+			grauDoPeso = " Você está com Sobrepeso";
+		} if (imc > 30 && imc <= 34.9) {
+			grauDoPeso = ". Você está com Obesidade Grau I.";
+		} if (imc > 35 && imc <= 39.9) {
+			grauDoPeso = ". Você está com Obesidade Grau II.";
+		} else {
+			grauDoPeso = ". Você está com Obesidade Mórbida.";
+		}
+
+		console.log (grauDoPeso);
+		
+
+		resultado.innerText = (nome + "o seu IMC é " + imc + grauDoPeso);
 }
 
-if (imc >= 18.5 && imc <= 24.99) {
-	mostra(nome + ", O seu IMC é" + imc + ". E você está no Peso Ideal.");
-	break;
-}
-
-if (imc >= 25 && imc <= 29.9) {
-	mostra(nome + ", O seu IMC é" + imc + ". E você está com Sobrepeso.");
-	break;
-}
-
-if (imc >30 && imc <= 34.9){
-	mostra(nome + ", O seu IMC é" + imc + ". E você está com Obesidade Grau I.");
-	break;
-}
-
-if (imc >35 && imc <= 39.9){
-	mostra(nome + ", O seu IMC é" + imc + ". E você está com Obesidade Grau II.");
-	break;
-}
-
-if (imc >= 40){
-	mostra(nome + ", O seu IMC é" + imc + ". E você está com Obesidade Mórbida.");
-	break;
-}
+calcular.addEventListener('click', imc);
